@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AcquisitionKit — The SMB Buyer's Toolkit</title>
+  <meta name="description" content="Professional-grade tools for buying a small business. Checklist, due diligence, LOI template, LBO model, and buyer's guide — everything in one pack." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0f1f3d;
+      --blue: #1a4fa0;
+      --accent: #2563eb;
+      --gold: #f59e0b;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --border: #e2e8f0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #fff;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--navy);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--gold); }
+    nav a.cta-nav {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3a6e 100%);
+      color: #fff;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(245,158,11,0.15);
+      color: var(--gold);
+      border: 1px solid rgba(245,158,11,0.3);
+      padding: 0.3rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      max-width: 750px;
+      margin: 0 auto 1.25rem;
+      letter-spacing: -0.5px;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero p {
+      font-size: 1.15rem;
+      color: #cbd5e1;
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 20px rgba(245,158,11,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(245,158,11,0.45); }
+    .hero .subtext {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    /* SOCIAL PROOF BAR */
+    .proof-bar {
+      background: var(--light);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+    .proof-bar strong { color: #1e293b; }
+
+    /* WHAT'S INSIDE */
+    section { padding: 4rem 2rem; max-width: 900px; margin: 0 auto; }
+    h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.3px;
+    }
+    .section-sub {
+      color: var(--gray);
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .item-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      background: #fff;
+      transition: box-shadow 0.2s;
+    }
+    .item-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .item-card .icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+    .item-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+    .item-card p { font-size: 0.875rem; color: var(--gray); }
+
+    /* FOR WHO */
+    .for-who { background: var(--light); padding: 4rem 2rem; }
+    .for-who-inner { max-width: 900px; margin: 0 auto; }
+    .checks { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 2rem; }
+    .checks li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.95rem; }
+    .checks li::before { content: "✓"; color: var(--accent); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+    @media (max-width: 600px) { .checks { grid-template-columns: 1fr; } }
+
+    /* PRICING */
+    .pricing-box {
+      border: 2px solid var(--accent);
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .pricing-box .price {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+      margin: 1rem 0 0.25rem;
+    }
+    .pricing-box .price-note { color: var(--gray); font-size: 0.875rem; margin-bottom: 1.5rem; }
+    .pricing-box ul {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+    .pricing-box ul li {
+      padding: 0.4rem 0;
+      font-size: 0.95rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 0.5rem;
+    }
+    .pricing-box ul li:last-child { border-bottom: none; }
+    .pricing-box ul li::before { content: "✅"; flex-shrink: 0; }
+    .guarantee {
+      margin-top: 1.25rem;
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem; }
+    .faq-item { border-bottom: 1px solid var(--border); padding-bottom: 1.25rem; }
+    .faq-item h4 { font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+    .faq-item p { font-size: 0.9rem; color: var(--gray); }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      color: #94a3b8;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+    }
+    footer a { color: #cbd5e1; text-decoration: none; }
+
+    /* FINAL CTA */
+    .final-cta {
+      background: linear-gradient(135deg, var(--navy), #1e3a6e);
+      color: #fff;
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    .final-cta h2 { color: #fff; margin-bottom: 1rem; }
+    .final-cta p { color: #cbd5e1; max-width: 500px; margin: 0 auto 2rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Acquisition<span>Kit</span></div>
+  <a href="#buy" class="cta-nav">Get the Toolkit →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">For SMB Buyers & Repreneurs</div>
+  <h1>Close Your First Business Acquisition <span>Without Missing a Step</span></h1>
+  <p>The professional-grade toolkit used by serious business buyers — checklists, templates, models, and a step-by-step guide in one instant download.</p>
+  <a href="#buy" class="btn-primary">Get the Full Toolkit — $97</a>
+  <p class="subtext">Instant download · One-time payment · 30-day money-back guarantee</p>
+</section>
+
+<!-- PROOF BAR -->
+<div class="proof-bar">
+  Built by <strong>M&A professionals</strong> who have worked on real SMB transactions ·
+  <strong>5 professional documents</strong> · Ready to use today
+</div>
+
+<!-- WHAT'S INSIDE -->
+<section>
+  <h2>Everything You Need to Buy a Business</h2>
+  <p class="section-sub">Five professional documents covering every stage of an SMB acquisition.</p>
+  <div class="items-grid">
+    <div class="item-card">
+      <div class="icon">📋</div>
+      <h3>SMB Acquisition Checklist</h3>
+      <p>8-phase, 80+ item checklist from first contact through Day 90 as the new owner. Never miss a step.</p>
+    </div>
+    <div class="item-card">
+      <div class="icon">🔍</div>
+      <h3>Due Diligence Request List</h3>
+      <p>150+ items covering financial, legal, operational, HR, IP, and commercial diligence. Send it to the seller on Day 1.</p>
+    </div>
+    <div class="item-card">
+      <div class="icon">📄</div>
+      <h3>Letter of Intent Template</h3>
+      <p>Professional LOI with all the right clauses — price structure, exclusivity, working capital adjustment, and transition.</p>
+    </div>
+    <div class="item-card">
+      <div class="icon">📊</div>
+      <h3>LBO & Valuation Model</h3>
+      <p>Excel model with 4 tabs. Run 3 scenarios, calculate IRR and MOIC, and walk into any negotiation knowing your numbers.</p>
+    </div>
+    <div class="item-card">
+      <div class="icon">📖</div>
+      <h3>Buyer's Quick-Start Guide</h3>
+      <p>7-step framework, financing structures explained, the most common mistakes and how to avoid them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHO -->
+<div class="for-who">
+  <div class="for-who-inner">
+    <h2>Who This Is For</h2>
+    <p class="section-sub">You're serious about buying a business. You want to look like you've done this before.</p>
+    <ul class="checks">
+      <li>First-time SMB buyers doing initial research</li>
+      <li>Aspiring repreneurs targeting their first acquisition</li>
+      <li>Search fund entrepreneurs in early stages</li>
+      <li>Professionals transitioning from advisory to ownership</li>
+      <li>Investors evaluating SMB deals for the first time</li>
+      <li>Anyone who wants to avoid costly rookie mistakes</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section id="buy">
+  <h2 style="text-align:center;">One Pack. Everything You Need.</h2>
+  <p class="section-sub" style="text-align:center;">No subscription. No upsell. Just the tools.</p>
+  <div class="pricing-box">
+    <div style="font-size:0.9rem;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.05em;">SMB Buyer's Toolkit</div>
+    <div class="price">$97</div>
+    <div class="price-note">One-time payment · Instant download</div>
+    <ul>
+      <li>SMB Acquisition Checklist (80+ items)</li>
+      <li>Due Diligence Request List (150+ items)</li>
+      <li>Letter of Intent Template</li>
+      <li>LBO & Valuation Model (Excel)</li>
+      <li>Buyer's Quick-Start Guide (PDF)</li>
+    </ul>
+    <a href="GUMROAD_LINK_HERE" class="btn-primary" style="display:block;">Get Instant Access →</a>
+    <p class="guarantee">🔒 30-day money-back guarantee. If it's not useful, get a full refund — no questions asked.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <h2>FAQ</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <h4>What format are the files?</h4>
+      <p>The checklist, LOI, DD list, and guide are in Markdown/PDF format. The LBO model is an Excel (.xlsx) file. All are instantly usable and easy to customize.</p>
+    </div>
+    <div class="faq-item">
+      <h4>I'm a complete beginner — is this for me?</h4>
+      <p>Yes. The Buyer's Guide walks you through the full process from scratch. The templates are designed to be usable even if you've never done an acquisition before.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Is this Canadian-specific?</h4>
+      <p>The templates and frameworks are applicable in any market. Some references (tax rates, SBA equivalents) are noted for context but everything is easily adapted.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What if I want a refund?</h4>
+      <p>30-day money-back guarantee. Email us and we'll refund you, full stop.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <h2>Ready to Buy a Business?</h2>
+  <p>Stop winging it. Get the professional toolkit and walk into your next deal prepared.</p>
+  <a href="GUMROAD_LINK_HERE" class="btn-primary">Get the Toolkit — $97 →</a>
+  <p style="margin-top:1rem;font-size:0.8rem;color:#94a3b8;">Instant download · 30-day guarantee</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 AcquisitionKit.co · <a href="mailto:hello@acquisitionkit.co">hello@acquisitionkit.co</a></p>
+  <p style="margin-top:0.5rem;">For informational purposes only. Not legal or financial advice.</p>
+</footer>
+
+</body>
+</html>
